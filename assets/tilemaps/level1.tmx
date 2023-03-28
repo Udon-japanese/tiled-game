@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="left-down" width="14" height="7" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="11">
+ <editorsettings>
+  <export target="level1.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="kenney_simple_platformer" tilewidth="64" tileheight="64" tilecount="98" columns="14">
+  <image source="../tilesets/platformPack_tilesheet.png" width="896" height="448"/>
+ </tileset>
+ <layer id="1" name="Platforms" width="14" height="7">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvAAAALwAAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAA=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Spikes">
+  <object id="2" gid="71" x="191.333" y="256.667" width="64" height="64"/>
+  <object id="3" gid="71" x="447.333" y="65" width="64" height="64"/>
+  <object id="4" gid="71" x="671.409" y="256.091" width="64" height="64"/>
+ </objectgroup>
+</map>
