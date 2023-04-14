@@ -1,12 +1,8 @@
 const config = {
   type: Phaser.AUTO,
   parent: "game",
-  width: 800,
-  heigth: 640,
-  scale: {
-    mode: Phaser.Scale.RESIZE,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-  },
+  width: 900,
+  height: 600,
   scene: {
     preload,
     create,
@@ -32,25 +28,27 @@ function preload() {
     "assets/images/kenney_player.png",
     "assets/images/kenney_player_atlas.json"
   );
-  this.load.image("tiles", "assets/tilesets/platformPack_tilesheet.png");
+  this.load.image("tiles", "assets/tilesets/map_tileset.png");
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON("map", "assets/tilemaps/level1.json");
+  this.load.tilemapTiledJSON("map", "assets/tilemaps/map.json");
 }
 
 function create() {
   const backgroundImage = this.add.image(0, 0, "background").setOrigin(0, 0);
-  backgroundImage.setScale(2, 0.8);
   const map = this.make.tilemap({ key: "map" });
-  const tileset = map.addTilesetImage("kenney_simple_platformer", "tiles");
-  const platforms = map.createStaticLayer("Platforms", tileset, 0, 200);
+  const tileset = map.addTilesetImage("map", "tiles");
+  const platforms = map.createLayer("map", tileset, 0, 0);
 
   platforms.setCollisionByExclusion(-1, true);
 
-  this.player = this.physics.add.sprite(50, 300, "player");
+  this.player = this.physics.add.sprite(820, 6, "player");
   this.player.setBounce(0.1);
+  this.player.setScale(0.3);
   this.player.setCollideWorldBounds(true);
   this.physics.add.collider(this.player, platforms);
-  this.player.body.setSize(this.player.width - 10, this.player.height - 17).setOffset(5, 17);
+  this.player.body
+    .setSize(this.player.width - 10, this.player.height - 17)
+    .setOffset(5, 17);
 
   this.anims.create({
     key: "walk",
@@ -85,12 +83,13 @@ function create() {
 
   // Let's get the spike objects, these are NOT sprites
   // We'll create spikes in our sprite group for each object in our map
-  map.getObjectLayer("Spikes").objects.forEach((spike) => {
+  map.getObjectLayer("spikes").objects.forEach((spike) => {
     // Add new spikes to our sprite group
     const spikeSprite = this.spikes
-      .create(spike.x, spike.y + 200 - spike.height, "spike")
+      .create(spike.x, spike.y - spike.height, "spike")
       .setOrigin(0);
-    spikeSprite.body.setSize(spike.width - 3, spike.height - 28).setOffset(3, 28)
+    spikeSprite.body
+      .setSize(spike.width, spike.height)
   });
 
   this.physics.add.collider(this.player, this.spikes, playerHit, null, this);
@@ -139,15 +138,15 @@ function update() {
 
 function playerHit(player, spike) {
   player.setVelocity(0, 0);
-  player.setX(50);
-  player.setY(300);
-  player.play('idle', true);
+  player.setX(820);
+  player.setY(6);
+  player.play("idle", true);
   player.setAlpha(0);
   let tw = this.tweens.add({
     targets: player,
     alpha: 1,
     duration: 100,
-    ease: 'Linear',
-    repeat: 5
+    ease: "Linear",
+    repeat: 5,
   });
 }
